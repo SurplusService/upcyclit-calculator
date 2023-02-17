@@ -1,7 +1,8 @@
 import React from "react";
 import { Typography, Container } from '@mui/material';
+import Calculator from '../components/Calculator';
 
-class Calculator extends React.Component {
+class CalculatorView extends React.Component {
     render() {
         return (
         <Container maxWidth="lg" color="text.primary">
@@ -9,11 +10,12 @@ class Calculator extends React.Component {
                 Calculator
             </Typography>
             <Typography variant="body1">
-                This is where the Calculator application will go.
+                This is the page showing the Calculator.
             </Typography>
+            <Calculator />
         </Container>
         );
     }
 }
 
-export default Calculator;
+export default CalculatorView;

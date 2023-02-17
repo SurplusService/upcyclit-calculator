@@ -1,31 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import {Routes, Route, BrowserRouter, Link} from 'react-router-dom'
+import {Routes, Route, BrowserRouter} from 'react-router-dom'
 import routes from './routes/routes'
 
 import Home from './views/pages/Home'
 import About from './views/pages/About'
-import Calculator from './views/pages/Calculator'
+import Calculator from './views/pages/CalculatorView'
+import Navbar from './views/layouts/Navbar'
+import Footer from './views/layouts/Footer';
 
 function App() {
   return (
     <BrowserRouter>
-      <header>
-        <nav>
-          <ul>
-            <li>
-              <Link to={routes.home}>Home</Link>
-            </li>
-            <li>
-              <Link to={routes.about}>About</Link>
-            </li>
-            <li>
-              <Link to={routes.calculator}>Calculator</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
+      <Navbar />
 
       <Routes>
         <Route path={routes.home} element={<Home />} />
@@ -33,9 +21,7 @@ function App() {
         <Route path={routes.calculator} element={<Calculator />} />
       </Routes>
 
-      <footer>
-        <p>Footer goes here</p>
-      </footer>
+      <Footer />
     </BrowserRouter>
   );
 }
