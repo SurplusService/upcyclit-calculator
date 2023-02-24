@@ -1,11 +1,14 @@
 import React from 'react';
+import { Typography, Container, } from '@mui/material';
+import CalculatorInput from './CalculatorInput';
 
 class Calculator extends React.Component {
     render() {
         return (
-            <div>
-                <h2>Main Embedded Calculator here</h2>
-            </div>
+            <Container>
+                <Typography variant="h4" sx={{marginBottom: '1rem'}}>UpCycleIT® Calculator</Typography>
+                <CalculatorInput onSelect={(details) => console.log(details)} />
+            </Container>
         );
     }
 }
