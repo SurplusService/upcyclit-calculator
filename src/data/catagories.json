@@ -1,0 +1,559 @@
+[{
+    "id": 1,
+    "name": "Disks (all encompassing)",
+    "industry": "IT",
+    "type": "Small",
+    "carbon_footprint": 16,
+    "Energy_consumption": 0.0225,
+    "methane_production": 0.004
+  },
+  {
+    "id": 2,
+    "name": "Network Switches",
+    "industry": "IT",
+    "type": "Medium",
+    "carbon_footprint": 214,
+    "Energy_consumption": 0.15,
+    "methane_production": 0.0535
+  },
+  {
+    "id": 3,
+    "name": "Servers",
+    "industry": "IT",
+    "type": "Large",
+    "carbon_footprint": 790,
+    "Energy_consumption": 2.75,
+    "methane_production": 0.1975
+  },
+  {
+    "id": 4,
+    "name": "Desktops",
+    "industry": "IT",
+    "type": "Large",
+    "carbon_footprint": 790,
+    "Energy_consumption": 2.75,
+    "methane_production": 0.1975
+  },
+  {
+    "id": 5,
+    "name": "Laptops",
+    "industry": "IT",
+    "type": "Medium",
+    "carbon_footprint": 214,
+    "Energy_consumption": 0.15,
+    "methane_production": 0.0535
+  },
+  {
+    "id": 6,
+    "name": "Hard Drives",
+    "industry": "IT",
+    "type": "Small",
+    "carbon_footprint": 16,
+    "Energy_consumption": 0.0225,
+    "methane_production": 0.004
+  },
+  {
+    "id": 7,
+    "name": "Monitors",
+    "industry": "IT",
+    "type": "Medium",
+    "carbon_footprint": 214,
+    "Energy_consumption": 0.15,
+    "methane_production": 0.0535
+  },
+  {
+    "id": 8,
+    "name": "Server Racks",
+    "industry": "IT",
+    "type": "Large",
+    "carbon_footprint": 790,
+    "Energy_consumption": 2.75,
+    "methane_production": 0.1975
+  },
+  {
+    "id": 9,
+    "name": "Patient Monitors",
+    "industry": "Medical",
+    "type": "Large",
+    "carbon_footprint": 790,
+    "Energy_consumption": 2.75,
+    "methane_production": 0.1975
+  },
+  {
+    "id": 10,
+    "name": "Ultrasounds pumps modules",
+    "industry": "Medical",
+    "type": "Small",
+    "carbon_footprint": 16,
+    "Energy_consumption": 0.0225,
+    "methane_production": 0.004
+  },
+  {
+    "id": 11,
+    "name": "exam tables",
+    "industry": "Medical",
+    "type": "Large",
+    "carbon_footprint": 790,
+    "Energy_consumption": 2.75,
+    "methane_production": 0.1975
+  },
+  {
+    "id": 12,
+    "name": "Beds",
+    "industry": "Medical",
+    "type": "Large",
+    "carbon_footprint": 790,
+    "Energy_consumption": 2.75,
+    "methane_production": 0.1975
+  },
+  {
+    "id": 13,
+    "name": "ventilators scales",
+    "industry": "Medical",
+    "type": "Large",
+    "carbon_footprint": 790,
+    "Energy_consumption": 2.75,
+    "methane_production": 0.1975
+  },
+  {
+    "id": 14,
+    "name": "Monitors",
+    "industry": "Medical",
+    "type": "Medium",
+    "carbon_footprint": 214,
+    "Energy_consumption": 0.15,
+    "methane_production": 0.0535
+  },
+  {
+    "id": 15,
+    "name": "Incubators",
+    "industry": "Medical",
+    "type": "Medium",
+    "carbon_footprint": 214,
+    "Energy_consumption": 0.15,
+    "methane_production": 0.0535
+  },
+  {
+    "id": 16,
+    "name": "light sources",
+    "industry": "Medical",
+    "type": "Small",
+    "carbon_footprint": 16,
+    "Energy_consumption": 0.0225,
+    "methane_production": 0.004
+  },
+  {
+    "id": 17,
+    "name": "baby warmers",
+    "industry": "Medical",
+    "type": "Large",
+    "carbon_footprint": 790,
+    "Energy_consumption": 2.75,
+    "methane_production": 0.1975
+  },
+  {
+    "id": 18,
+    "name": "surgical equipment",
+    "industry": "Medical",
+    "type": "Small",
+    "carbon_footprint": 16,
+    "Energy_consumption": 0.0225,
+    "methane_production": 0.004
+  },
+  {
+    "id": 19,
+    "name": "electrosurgical unit",
+    "industry": "Medical",
+    "type": "Medium",
+    "carbon_footprint": 214,
+    "Energy_consumption": 0.15,
+    "methane_production": 0.0535
+  },
+  {
+    "id": 20,
+    "name": "Scanners",
+    "industry": "Medical",
+    "type": "Small",
+    "carbon_footprint": 16,
+    "Energy_consumption": 0.0225,
+    "methane_production": 0.004
+  },
+  {
+    "id": 21,
+    "name": "blood pressure monitors",
+    "industry": "Medical",
+    "type": "Small",
+    "carbon_footprint": 16,
+    "Energy_consumption": 0.0225,
+    "methane_production": 0.004
+  },
+  {
+    "id": 22,
+    "name": "Warmers",
+    "industry": "Medical",
+    "type": "Medium",
+    "carbon_footprint": 214,
+    "Energy_consumption": 0.15,
+    "methane_production": 0.0535
+  },
+  {
+    "id": 23,
+    "name": "Analyzers",
+    "industry": "Medical",
+    "type": "Medium",
+    "carbon_footprint": 214,
+    "Energy_consumption": 0.15,
+    "methane_production": 0.0535
+  },
+  {
+    "id": 24,
+    "name": "power sources",
+    "industry": "Medical",
+    "type": "Small",
+    "carbon_footprint": 16,
+    "Energy_consumption": 0.0225,
+    "methane_production": 0.004
+  },
+  {
+    "id": 25,
+    "name": "Brain Monitor",
+    "industry": "Medical",
+    "type": "Medium",
+    "carbon_footprint": 214,
+    "Energy_consumption": 0.15,
+    "methane_production": 0.0535
+  },
+  {
+    "id": 26,
+    "name": "Xray",
+    "industry": "Medical",
+    "type": "Large",
+    "carbon_footprint": 790,
+    "Energy_consumption": 2.75,
+    "methane_production": 0.1975
+  },
+  {
+    "id": 27,
+    "name": "CT",
+    "industry": "Medical",
+    "type": "XL",
+    "carbon_footprint": 11900,
+    "Energy_consumption": 150,
+    "methane_production": 2.975
+  },
+  {
+    "id": 28,
+    "name": "Mamogram",
+    "industry": "Medical",
+    "type": "Large",
+    "carbon_footprint": 790,
+    "Energy_consumption": 2.75,
+    "methane_production": 0.1975
+  },
+  {
+    "id": 29,
+    "name": "C Arm",
+    "industry": "Medical",
+    "type": "XL",
+    "carbon_footprint": 11900,
+    "Energy_consumption": 150,
+    "methane_production": 2.975
+  },
+  {
+    "id": 30,
+    "name": "MRI",
+    "industry": "Medical",
+    "type": "XL",
+    "carbon_footprint": 11900,
+    "Energy_consumption": 150,
+    "methane_production": 2.975
+  },
+  {
+    "id": 31,
+    "name": "Oximeter monitor",
+    "industry": "Medical",
+    "type": "Small",
+    "carbon_footprint": 16,
+    "Energy_consumption": 0.0225,
+    "methane_production": 0.004
+  },
+  {
+    "id": 32,
+    "name": "Endoscopy",
+    "industry": "Medical",
+    "type": "Large",
+    "carbon_footprint": 790,
+    "Energy_consumption": 2.75,
+    "methane_production": 0.1975
+  },
+  {
+    "id": 33,
+    "name": "Centrifuge",
+    "industry": "BioTech",
+    "type": "Medium",
+    "carbon_footprint": 214,
+    "Energy_consumption": 0.15,
+    "methane_production": 0.0535
+  },
+  {
+    "id": 34,
+    "name": "Shakers",
+    "industry": "BioTech",
+    "type": "Small",
+    "carbon_footprint": 16,
+    "Energy_consumption": 0.0225,
+    "methane_production": 0.004
+  },
+  {
+    "id": 35,
+    "name": "Stirrers",
+    "industry": "BioTech",
+    "type": "Small",
+    "carbon_footprint": 16,
+    "Energy_consumption": 0.0225,
+    "methane_production": 0.004
+  },
+  {
+    "id": 36,
+    "name": "auto samplers",
+    "industry": "BioTech",
+    "type": "Medium",
+    "carbon_footprint": 214,
+    "Energy_consumption": 0.15,
+    "methane_production": 0.0535
+  },
+  {
+    "id": 37,
+    "name": "test equipment",
+    "industry": "BioTech",
+    "type": "Large",
+    "carbon_footprint": 790,
+    "Energy_consumption": 2.75,
+    "methane_production": 0.1975
+  },
+  {
+    "id": 38,
+    "name": "Chromatography",
+    "industry": "BioTech",
+    "type": "Large",
+    "carbon_footprint": 790,
+    "Energy_consumption": 2.75,
+    "methane_production": 0.1975
+  },
+  {
+    "id": 39,
+    "name": "Spectrometry",
+    "industry": "BioTech",
+    "type": "Large",
+    "carbon_footprint": 790,
+    "Energy_consumption": 2.75,
+    "methane_production": 0.1975
+  },
+  {
+    "id": 40,
+    "name": "flow module",
+    "industry": "BioTech",
+    "type": "Medium",
+    "carbon_footprint": 214,
+    "Energy_consumption": 0.15,
+    "methane_production": 0.0535
+  },
+  {
+    "id": 41,
+    "name": "safety hoods",
+    "industry": "BioTech",
+    "type": "Small",
+    "carbon_footprint": 16,
+    "Energy_consumption": 0.0225,
+    "methane_production": 0.004
+  },
+  {
+    "id": 42,
+    "name": "Degasser",
+    "industry": "BioTech",
+    "type": "Small",
+    "carbon_footprint": 16,
+    "Energy_consumption": 0.0225,
+    "methane_production": 0.004
+  },
+  {
+    "id": 43,
+    "name": "Valves",
+    "industry": "BioTech",
+    "type": "Small",
+    "carbon_footprint": 16,
+    "Energy_consumption": 0.0225,
+    "methane_production": 0.004
+  },
+  {
+    "id": 44,
+    "name": "Pumps",
+    "industry": "BioTech",
+    "type": "Small",
+    "carbon_footprint": 16,
+    "Energy_consumption": 0.0225,
+    "methane_production": 0.004
+  },
+  {
+    "id": 45,
+    "name": "fraction collectors",
+    "industry": "BioTech",
+    "type": "Medium",
+    "carbon_footprint": 214,
+    "Energy_consumption": 0.15,
+    "methane_production": 0.0535
+  },
+  {
+    "id": 46,
+    "name": "PCR",
+    "industry": "BioTech",
+    "type": "Medium",
+    "carbon_footprint": 214,
+    "Energy_consumption": 0.15,
+    "methane_production": 0.0535
+  },
+  {
+    "id": 47,
+    "name": "Sanitizers",
+    "industry": "BioTech",
+    "type": "Small",
+    "carbon_footprint": 16,
+    "Energy_consumption": 0.0225,
+    "methane_production": 0.004
+  },
+  {
+    "id": 48,
+    "name": "Freezers",
+    "industry": "BioTech",
+    "type": "Large",
+    "carbon_footprint": 790,
+    "Energy_consumption": 2.75,
+    "methane_production": 0.1975
+  },
+  {
+    "id": 49,
+    "name": "Ovens",
+    "industry": "BioTech",
+    "type": "Large",
+    "carbon_footprint": 790,
+    "Energy_consumption": 2.75,
+    "methane_production": 0.1975
+  },
+  {
+    "id": 50,
+    "name": "Microscopes",
+    "industry": "BioTech",
+    "type": "Large",
+    "carbon_footprint": 790,
+    "Energy_consumption": 2.75,
+    "methane_production": 0.1975
+  },
+  {
+    "id": 51,
+    "name": "robot arms",
+    "industry": "BioTech",
+    "type": "Medium",
+    "carbon_footprint": 214,
+    "Energy_consumption": 0.15,
+    "methane_production": 0.0535
+  },
+  {
+    "id": 52,
+    "name": "Detectors",
+    "industry": "BioTech",
+    "type": "Large",
+    "carbon_footprint": 790,
+    "Energy_consumption": 2.75,
+    "methane_production": 0.1975
+  },
+  {
+    "id": 53,
+    "name": "liquid handlers",
+    "industry": "BioTech",
+    "type": "Large",
+    "carbon_footprint": 790,
+    "Energy_consumption": 2.75,
+    "methane_production": 0.1975
+  },
+  {
+    "id": 54,
+    "name": "analytical balance",
+    "industry": "BioTech",
+    "type": "Medium",
+    "carbon_footprint": 214,
+    "Energy_consumption": 0.15,
+    "methane_production": 0.0535
+  },
+  {
+    "id": 55,
+    "name": "chart recorder",
+    "industry": "BioTech",
+    "type": "Small",
+    "carbon_footprint": 16,
+    "Energy_consumption": 0.0225,
+    "methane_production": 0.004
+  },
+  {
+    "id": 56,
+    "name": "FPLC",
+    "industry": "BioTech",
+    "type": "Large",
+    "carbon_footprint": 790,
+    "Energy_consumption": 2.75,
+    "methane_production": 0.1975
+  },
+  {
+    "id": 57,
+    "name": "Power supply",
+    "industry": "BioTech",
+    "type": "Medium",
+    "carbon_footprint": 214,
+    "Energy_consumption": 0.15,
+    "methane_production": 0.0535
+  },
+  {
+    "id": 58,
+    "name": "water baths",
+    "industry": "BioTech",
+    "type": "Medium",
+    "carbon_footprint": 214,
+    "Energy_consumption": 0.15,
+    "methane_production": 0.0535
+  },
+  {
+    "id": 59,
+    "name": "microplate washer",
+    "industry": "BioTech",
+    "type": "Medium",
+    "carbon_footprint": 214,
+    "Energy_consumption": 0.15,
+    "methane_production": 0.0535
+  },
+  {
+    "id": 60,
+    "name": "heater",
+    "industry": "BioTech",
+    "type": "Medium",
+    "carbon_footprint": 214,
+    "Energy_consumption": 0.15,
+    "methane_production": 0.0535
+  },
+  {
+    "id": 61,
+    "name": "cooler",
+    "industry": "BioTech",
+    "type": "Medium",
+    "carbon_footprint": 214,
+    "Energy_consumption": 0.15,
+    "methane_production": 0.0535
+  },
+  {
+    "id": 62,
+    "name": "incubators",
+    "industry": "BioTech",
+    "type": "Large",
+    "carbon_footprint": 790,
+    "Energy_consumption": 2.75,
+    "methane_production": 0.1975
+  }
+]
