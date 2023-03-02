@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Typography, Container, } from '@mui/material';
-import CalculatorInput from './CalculatorInput';
+import CalculatorInput, { CalculationDetails } from './CalculatorInput';
 
-class Calculator extends React.Component {
-    render() {
-        return (
-            <Container>
-                <Typography variant="h4" sx={{marginBottom: '1rem'}}>UpCycleIT® Calculator</Typography>
-                <CalculatorInput onSelect={(details) => console.log(details)} />
-            </Container>
-        );
+const Calculator = () => {
+    const [items, setItems] = useState<CalculationDetails[]>([])
+    const handleSelect = (details: CalculationDetails) => {
+        setItems([...items, details])
     }
+    return (
+        <Container>
+            <Typography variant="h4" sx={{marginBottom: '1rem'}}>UpCycleIT® Calculator</Typography>
+            <CalculatorInput onSelect={handleSelect} />
+            {/* <CalculatorItemsView items={items}></CalculatorItemsView> */}
+            {/* <CalculatorGraphs items={items}></CalculatorGraph> */}
+            {/* <CalculatorContactButton /> */}
+        </Container>
+    );
 }
 
 export default Calculator;
