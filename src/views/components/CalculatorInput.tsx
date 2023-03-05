@@ -12,7 +12,7 @@ interface OptionItem {
     industry: string;
     type: string;
     carbon_footprint: number;
-    Energy_consumption: number;
+    energy_consumption: number;
     methane_production: number;
 }
 
