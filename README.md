@@ -19,6 +19,12 @@ React is the library with which the fronend is built on. Check out the [React do
 ### React Router
 React Router enables routing without the use of a server to render pages. Check out the [React Router documentation](https://reactrouter.com/en/main).
 
+### Material UI
+Material UI is a React library of UI components that simplifies UI development. Check out the [Material UI documentation](https://mui.com/material-ui/getting-started/overview/)
+
+### Recharts
+Recharts is a React library for displaying visual graphs or charts. Check out the [Recharts documentation](https://recharts.org/en-US/guide)
+
 ### TypeScript
 TypeScript is the language used to write this web application. Check out the [TypeScript documentation](https://www.typescriptlang.org/docs/).
 

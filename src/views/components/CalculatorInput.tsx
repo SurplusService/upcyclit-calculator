@@ -12,7 +12,7 @@ interface OptionItem {
     industry: string;
     type: string;
     carbon_footprint: number;
-    Energy_consumption: number;
+    energy_consumption: number;
     methane_production: number;
 }
 
@@ -21,7 +21,7 @@ interface ModifierItem {
     name: string;
 }
 
-const categories: OptionItem[] = require('../../data/catagories.json');
+const categories: OptionItem[] = require('../../data/categories.json');
 const modifiers: ModifierItem[] = [
     { id: 0, name: "Quantity" },
     { id: 1, name: "Weight (lbs)" },
