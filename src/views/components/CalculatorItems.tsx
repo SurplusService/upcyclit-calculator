@@ -141,9 +141,9 @@ const ModalComp = (props: ModalCompProps) => {
                                     defaultValue={item.modifier.id}
                                     onChange={handleModifierChange}
                                 >
-                                    <MenuItem value={0} key={0}>Quantity</MenuItem>
-                                    <MenuItem value={1} key={1}>Weight(lbs)</MenuItem>
-                                    <MenuItem value={2} key={2}>Gaylords</MenuItem>
+                                    {modifiers.map((modifier) => (
+                            <MenuItem value={modifier.id} key={modifier.id}>{modifier.name}</MenuItem>
+                        ))}
 
                                 </Select>
                             </FormControl>
