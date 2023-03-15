@@ -23,7 +23,7 @@ interface ModifierItem {
 }
 
 const categories: OptionItem[] = require('../../data/categories.json');
-const modifiers: ModifierItem[] = [
+export const modifiers: ModifierItem[] = [
     { id: 0, name: "Quantity", label: 'x', },
     { id: 1, name: "Weight (lbs)", label: 'lbs' },
     { id: 2, name: "Gaylords", label: 'gaylords'},
