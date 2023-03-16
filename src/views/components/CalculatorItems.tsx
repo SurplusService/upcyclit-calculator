@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
-import { CalculationDetails } from "./CalculatorInput";
-import { List, ListItem, ListItemText, IconButton } from '@mui/material';
+import React from 'react';
+import {
+  List,
+  ListItem,
+  ListItemText,
+  IconButton,
+  SelectChangeEvent,
+  TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Grid
+} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import {
-    SelectChangeEvent, Autocomplete, TextField,
-    FormControl, InputLabel,
-    Select, MenuItem, Grid
-} from '@mui/material';
-import { modifiers } from "./CalculatorInput"
-// import { handle } from './Calculator';
+
+import { CalculationDetails, modifiers } from "./CalculatorInput"
 
 interface CalculatorItemsProps {
     /**
@@ -41,10 +47,11 @@ const CalculatorItems = (props: CalculatorItemsProps) => {
                 {
                     props.items.map((item) => (
                         <ListItem style={{
-                            background: '#009444'
+                            background: '#e7e7e7',
+                            borderRadius: '5px',
+                            marginBottom: '.5rem',
                         }}
                             key={`${item.category.id}_${item.modifier.id}`}
-                            //change key to categoryid_modifierid
                             secondaryAction={
                                 <IconButton
                                     aria-label="delete"
@@ -55,8 +62,7 @@ const CalculatorItems = (props: CalculatorItemsProps) => {
 
                             }
                         >
-                            <ListItemText primaryTypographyProps={{ style: {color:'white'} }} primary={item.category.name} 
-                            secondaryTypographyProps={{ style: {color:'white'} }} secondary={`${item.value} ${item.modifier.label}`} />
+                            <ListItemText primary={item.category.name} secondary={`${item.value} ${item.modifier.label}`} />
                             <ModalComp item={item} onUpdate={props.onUpdate}></ModalComp>
                         </ListItem>
                     ))
@@ -84,23 +90,24 @@ const ModalComp = (props: ModalCompProps) => {
     }
 
     const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        item.value = Number(e.target.value)
-        setItem(item)
+        setItem({
+            ...item,
+            value: Number(e.target.value),
+        })
     }
 
     const handleModifierChange = (e: SelectChangeEvent<number>) => {
         // Find a modifier in an array of modifiers by id
-        let selectedModifier = modifiers.find(m => m.id == e.target.value)
+        let selectedModifier = modifiers.find(m => m.id === e.target.value)
         if (!selectedModifier) {
             console.log("HELP 1!")
             return
         }
 
-        // Set item modifier to the selected modifiers
-        item.modifier = selectedModifier
-
-        // Update DOM with SetItem()
-        setItem(item)
+        setItem({
+            ...item,
+            modifier: selectedModifier
+        })
     }
 
     return (

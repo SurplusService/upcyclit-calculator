@@ -3,7 +3,6 @@ import { Typography, Container, } from '@mui/material';
 import CalculatorInput, { CalculationDetails } from './CalculatorInput';
 import CalculatorGraph from './CalculatorGraph';
 import CalculatorItems from './CalculatorItems';
-import { SignalCellularConnectedNoInternet0Bar } from '@mui/icons-material';
 
 
 
@@ -20,12 +19,12 @@ const Calculator = () => {
     const handleUpdate = (id: number, updatedItem: CalculationDetails) => {
         let newItems: CalculationDetails[] = []
 
-        for (let i = 0; i < items.length; i++) {
+        for (const element of items) {
             // if item has target id, push the updated item
-            if(items[i].category.id == id) {
+            if (element.category.id === id) {
                 newItems.push(updatedItem)
             } else {
-                newItems.push(items[i])
+                newItems.push(element)
             }
         }
 
@@ -33,7 +32,11 @@ const Calculator = () => {
     }
 
     return (
-        <Container>
+        <Container style={{
+            borderRadius: '5px',
+            padding: '1rem',
+            width: 'fit-content',
+        }}>
             <Typography variant="h4" sx={{marginBottom: '1rem'}}>UpCycleIT® Calculator</Typography>
             <CalculatorInput onSelect={handleSelect} />
             <CalculatorItems items={items} onDelete={handleDelete} onUpdate={handleUpdate}></CalculatorItems>
@@ -41,11 +44,5 @@ const Calculator = () => {
         </Container>
     );
 }
-
-// export function handle(id: number, updatedItem: CalculationDetails) {
-//     if(id==updatedItem.category.id) {
-
-//     }
-// }
 
 export default Calculator;
