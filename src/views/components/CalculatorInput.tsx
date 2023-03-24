@@ -19,13 +19,14 @@ interface OptionItem {
 interface ModifierItem {
     id: number;
     name: string;
+    label: string;
 }
 
 const categories: OptionItem[] = require('../../data/categories.json');
-const modifiers: ModifierItem[] = [
-    { id: 0, name: "Quantity" },
-    { id: 1, name: "Weight (lbs)" },
-    { id: 2, name: "Gaylords" },
+export const modifiers: ModifierItem[] = [
+    { id: 0, name: "Quantity", label: 'x', },
+    { id: 1, name: "Weight (lbs)", label: 'lb(s)' },
+    { id: 2, name: "Gaylords", label: 'gaylord(s)'},
 ]
 
 export interface CalculationDetails {
