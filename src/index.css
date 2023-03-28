@@ -1,0 +1,43 @@
+:root {
+  --color_1: rgba(33, 69, 27, 1);
+  --color_2: rgba(66, 133, 244, 1);
+  --color_3: rgba(255, 255, 255, 1);
+  --color_4: rgba(0, 0, 0, 1);
+  --color_5: rgba(45, 46, 50, 1);
+  --color_6: rgba(244, 250, 235, 1);
+  --color_7: rgba(0, 148, 68, 1);
+  --color_8: rgba(108, 108, 108, 1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color_1);
+  direction: ltr;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.MuiFormControl-root {
+  background-color: #f3f8fb !important;
+  border: none !important;
+}
+/* {
+  //     root: {
+  //       backgroundColor: "rgb(232, 241, 250)",
+  //       "&:hover": {
+  //         backgroundColor: "rgb(250, 232, 241)",
+  //         // Reset on touch devices, it doesn't add specificity
+  //         "@media (hover: none)": {
+  //           backgroundColor: "rgb(232, 241, 250)"
+  //         }
+  //       },
+  //       "&.Mui-focused": {
+  //         backgroundColor: "rgb(250, 241, 232)"
+  //       }
+  //     }
+  //   }
+  // } */

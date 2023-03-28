@@ -42,12 +42,13 @@ const style = {
 };
 const CalculatorItems = (props: CalculatorItemsProps) => {
     return (
-        <Grid maxWidth="sm" mt={2}>
+        <Grid maxWidth="sm" mt={2} sx={{ maxHeight: '250px', overflowY: 'scroll' }}>
             <List>
                 {
                     props.items.map((item) => (
                         <ListItem style={{
-                            background: '#e7e7e7',
+                            // background: '#e7e7e7',
+                            background: 'rgba(0, 148, 68, .2)',
                             borderRadius: '5px',
                             marginBottom: '.5rem',
                         }}
