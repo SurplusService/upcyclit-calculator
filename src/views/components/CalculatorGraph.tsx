@@ -38,9 +38,9 @@ interface CustomPieChartProps {
 const CustomPieChart = (props: CustomPieChartProps) => {
     return (
         <Grid item xs={12}>
-            <ResponsiveContainer width="100%" height={200}>
+            <ResponsiveContainer width="100%" height={250}>
                 <PieChart>
-                    <Pie dataKey="value" data={props.entries} innerRadius="40%" fill="#82ca9d">
+                    <Pie dataKey="value" data={props.entries} fill="#82ca9d">
                         {props.entries.map((_entry, index) => (
                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
@@ -51,6 +51,8 @@ const CustomPieChart = (props: CustomPieChartProps) => {
         </Grid>
     )
 }
+
+const round = (num: number) => Math.round(num * 100) / 100
 
 const CalculatorGraph = (props: CalculatorGraphProps) => {
     const [selectedChart, setSelectedChart] = useState(0)
@@ -79,7 +81,7 @@ const CalculatorGraph = (props: CalculatorGraphProps) => {
             entries: formattedItems.map((item) => {
                 return {
                     name: item.category.name,
-                    value: item.value * item.category.carbon_footprint
+                    value: round(item.value * item.category.carbon_footprint)
                 }
             })
         },
@@ -91,7 +93,7 @@ const CalculatorGraph = (props: CalculatorGraphProps) => {
             entries: formattedItems.map((item) => {
                 return {
                     name: item.category.name,
-                    value: item.value * item.category.energy_consumption
+                    value: round(item.value * item.category.energy_consumption)
                 }
             })
         },
@@ -103,7 +105,7 @@ const CalculatorGraph = (props: CalculatorGraphProps) => {
             entries: formattedItems.map((item) => {
                 return {
                     name: item.category.name,
-                    value: item.value * item.category.methane_production
+                    value: round(item.value * item.category.methane_production)
                 }
             })
         }
@@ -144,7 +146,7 @@ const CalculatorGraph = (props: CalculatorGraphProps) => {
                     </Grid>
                     :
                     <Grid item xs={12}>
-                        <Typography variant="h6" color="text.secondary" align="center">
+                        <Typography variant="body1" color="text.secondary" align="center">
                             Enter some items to see the carbon footprint.
                         </Typography>
                     </Grid>

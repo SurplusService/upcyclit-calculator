@@ -9,7 +9,7 @@ class CalculatorView extends React.Component {
 
   render() {
     return (
-      <Container maxWidth="lg" color="text.primary">
+      <Container sx={{padding: 0}} maxWidth="lg" color="text.primary">
         <Calculator/>
       </Container>
     );

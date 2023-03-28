@@ -79,48 +79,59 @@ const CalculatorInput = (props: CalculatorInputProps) => {
     }
 
     return (
-        <Grid container spacing={2} maxWidth="sm">
-            <Grid item xs={12}>
-                <Autocomplete
-                    id="unit-autocomplete"
-                    options={categories}
-                    groupBy={(option: OptionItem) => option.industry}
-                    getOptionLabel={(option: OptionItem) => option.name}
-                    onChange={handleAutocompleteChange}
-                    renderInput={(params) => <TextField {...params} label="UpCycleable Units" />}
-                />
-            </Grid>
-            <Grid item sm={3} xs={6}>
-                <TextField
-                    id="modifier-number"
-                    label={modifier.name}
-                    type="number"
-                    onChange={handleValueChange}
-                    value={value}
-                    sx={sxFill}
-                />
-            </Grid>
-            <Grid item sm={3} xs={6}>
-                <FormControl fullWidth>
-                    <InputLabel id="units-label">Units</InputLabel>
-                    <Select
-                        id="units-select-label"
-                        labelId="units-label"
-                        value={modifier.id}
-                        label="Units"
-                        onChange={handleSelectChange}
-                        sx={sxFill}
-                    >
-                        {modifiers.map((modifier: ModifierItem) => (
-                            <MenuItem value={modifier.id} key={modifier.id}>{modifier.name}</MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-            </Grid>
-            <Grid item sm={6} xs={12}>
-                <Button variant="contained" size="large" onClick={handleAddToCalculation} sx={sxFill}>Add to Calculation</Button>
-            </Grid>
+      <Grid container spacing={2} maxWidth="sm">
+        <Grid item xs={12}>
+          <Autocomplete
+            id="unit-autocomplete"
+            options={categories}
+            groupBy={(option: OptionItem) => option.industry}
+            getOptionLabel={(option: OptionItem) => option.name}
+            onChange={handleAutocompleteChange}
+            renderInput={(params) => (
+              <TextField {...params} label="UpCycleable Units" />
+            )}
+          />
         </Grid>
+        <Grid item sm={3} xs={6}>
+          <TextField
+            id="modifier-number"
+            label={modifier.name}
+            type="number"
+            onChange={handleValueChange}
+            value={value}
+            sx={sxFill}
+          />
+        </Grid>
+        <Grid item sm={3} xs={6}>
+          <FormControl fullWidth>
+            <InputLabel id="units-label">Units</InputLabel>
+            <Select
+              id="units-select-label"
+              labelId="units-label"
+              value={modifier.id}
+              label="Units"
+              onChange={handleSelectChange}
+              sx={sxFill}
+            >
+              {modifiers.map((modifier: ModifierItem) => (
+                <MenuItem value={modifier.id} key={modifier.id}>
+                  {modifier.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item sm={6} xs={12}>
+          <Button
+            variant="contained"
+            size="large"
+            onClick={handleAddToCalculation}
+            sx={sxFill}
+          >
+            Add to Calculation
+          </Button>
+        </Grid>
+      </Grid>
     );
 }
 

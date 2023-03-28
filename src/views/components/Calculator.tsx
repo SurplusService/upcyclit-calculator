@@ -34,13 +34,14 @@ const Calculator = () => {
     return (
         <Container style={{
             borderRadius: '5px',
-            padding: '1rem',
-            width: 'fit-content',
-        }}>
-            <Typography variant="h4" sx={{marginBottom: '1rem'}}>UpCycleIT® Calculator</Typography>
-            <CalculatorInput onSelect={handleSelect} />
-            <CalculatorItems items={items} onDelete={handleDelete} onUpdate={handleUpdate}></CalculatorItems>
-            <CalculatorGraph items={items}></CalculatorGraph>
+            width: 'fit-content'
+        }} sx={{padding: 0}}>
+            <Typography variant="h3" sx={{ marginBottom: '1rem' }}>UpCycleIT® Calculator</Typography>
+            <Container style={{border: '1px dashed #CDE0EC', borderRadius: '4px'}} sx={{padding: 2}} maxWidth="lg" color="text.primary">
+                <CalculatorInput onSelect={handleSelect} />
+                <CalculatorItems items={items} onDelete={handleDelete} onUpdate={handleUpdate}></CalculatorItems>
+                <CalculatorGraph items={items}></CalculatorGraph>
+            </Container>
         </Container>
     );
 }

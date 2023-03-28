@@ -1,37 +1,46 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import {Routes, Route, BrowserRouter} from 'react-router-dom'
-import routes from './routes/routes'
-
-import Home from './views/pages/Home'
-import About from './views/pages/About'
 import Calculator from './views/pages/CalculatorView'
-import Navbar from './views/layouts/Navbar'
-import Footer from './views/layouts/Footer';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-function App() {
-  return (
-    <BrowserRouter>
-      <Navbar />
+import './index.css'
 
-      <Routes>
-        <Route path={routes.home} element={<Home />} />
-        <Route path={routes.about} element={<About />} />
-        <Route path={routes.calculator} element={<Calculator />} />
-      </Routes>
+const theme = createTheme({
+  typography: {
+    fontFamily: 'Roboto, sans-serif',
+    h3: {
+      fontSize: '24px',
+      fontWeight: '700',
+      fontStyle: 'normal',
+    },
+    body1: {
+      fontSize: '16px',
+      lineHeight: '1.5',
+      fontWeight: '400',
+    }
+  },
+  palette: {
+    primary: {
+      main: 'rgba(66, 133, 244, 1)',
+      // main: 'rgb(42, 49, 53)',
+    },
+    text: {
+      primary: 'rgba(108, 108, 108, 1)',
+    }
+  },
+});
 
-      <Footer />
-    </BrowserRouter>
-  );
-}
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <Calculator />
+    </ThemeProvider>
   </React.StrictMode>
 );
 
