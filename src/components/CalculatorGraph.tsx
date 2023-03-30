@@ -38,7 +38,7 @@ interface CustomPieChartProps {
 const CustomPieChart = (props: CustomPieChartProps) => {
     return (
         <Grid item xs={12}>
-            <ResponsiveContainer width="100%" height={250}>
+            <ResponsiveContainer width="100%" height={400}>
                 <PieChart>
                     <Pie dataKey="value" data={props.entries} fill="#82ca9d">
                         {props.entries.map((_entry, index) => (
@@ -126,36 +126,34 @@ const CalculatorGraph = (props: CalculatorGraphProps) => {
     }
 
     return (
-        <div>
-            <Grid container spacing={0} maxWidth="sm" mt={2}>
-                {props.items.length > 0 ?
-                    <Grid item xs={12}>
-                        <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between"}} alignContent="center">
-                            <IconButton aria-label="back" onClick={handleBackButton} disabled={selectedChart-1 < 0}>
-                                <ArrowBackIosNew fontSize="small" />
-                            </IconButton>
-
-                            <Typography variant="h6" color="text.secondary">
-                                Total {charts[selectedChart].name}: {charts[selectedChart].total.toFixed(2)} 
-                            </Typography>
-                            
-                            <IconButton aria-label="next" onClick={handleNextButton} disabled={selectedChart+1 >= charts.length}>
-                                <ArrowForwardIos fontSize="small" />
-                            </IconButton>
-                        </Box>
-                    </Grid>
-                    :
-                    <Grid item xs={12}>
-                        <Typography variant="body1" color="text.secondary" align="center">
-                            Enter some items to see the carbon footprint.
-                        </Typography>
-                    </Grid>
-                }
+        <Grid container spacing={0} maxWidth="sm" mt={2}>
+            {props.items.length > 0 ?
                 <Grid item xs={12}>
-                    <CustomPieChart entries={charts[selectedChart].entries} />
+                    <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between"}} alignContent="center">
+                        <IconButton aria-label="back" onClick={handleBackButton} disabled={selectedChart-1 < 0}>
+                            <ArrowBackIosNew fontSize="small" />
+                        </IconButton>
+
+                        <Typography variant="h6" color="text.secondary">
+                            Total {charts[selectedChart].name}: {charts[selectedChart].total.toFixed(2)} 
+                        </Typography>
+                        
+                        <IconButton aria-label="next" onClick={handleNextButton} disabled={selectedChart+1 >= charts.length}>
+                            <ArrowForwardIos fontSize="small" />
+                        </IconButton>
+                    </Box>
                 </Grid>
+                :
+                <Grid item xs={12}>
+                    <Typography variant="body1" color="text.secondary" align="center">
+                        Enter some items to see the carbon footprint.
+                    </Typography>
+                </Grid>
+            }
+            <Grid item xs={12}>
+                <CustomPieChart entries={charts[selectedChart].entries} />
             </Grid>
-        </div>
+        </Grid>
     )
 }
 

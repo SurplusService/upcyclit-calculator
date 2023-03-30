@@ -5,33 +5,11 @@ import {
     Select, MenuItem, Button, Grid
 } from '@mui/material';
 
-
-interface OptionItem {
-    id: number;
-    name: string;
-    industry: string;
-    type: string;
-    carbon_footprint: number;
-    energy_consumption: number;
-    methane_production: number;
-}
-
-interface ModifierItem {
-    id: number;
-    name: string;
-    label: string;
-}
-
-const categories: OptionItem[] = require('../../data/categories.json');
-export const modifiers: ModifierItem[] = [
-    { id: 0, name: "Quantity", label: 'x', },
-    { id: 1, name: "Weight (lbs)", label: 'lb(s)' },
-    { id: 2, name: "Gaylords", label: 'gaylord(s)'},
-]
+import * as db from '../data/db';
 
 export interface CalculationDetails {
-    category: OptionItem;
-    modifier: ModifierItem;
+    category: db.OptionItem;
+    modifier: db.ModifierItem;
     value: number;
 }
 
@@ -41,16 +19,17 @@ interface CalculatorInputProps {
     /**
      * Callback function to handle the selection of a category with modifier.
      */
-    onSelect: ((details: CalculationDetails) => void)
+  onSelect: ((details: CalculationDetails) => void)
+  innerRef?: React.Ref<HTMLDivElement>
 }
 
 
 const CalculatorInput = (props: CalculatorInputProps) => {
     const [category, setCategory] = useState(0);
-    const [modifier, setModifier] = useState(modifiers[0]);
+    const [modifier, setModifier] = useState(db.getModifier(0));
     const [value, setValue] = useState(0);
 
-    const handleAutocompleteChange = (e: any, value: OptionItem | null) => {
+    const handleAutocompleteChange = (e: any, value: db.OptionItem | null) => {
         setCategory(value?.id || 0)
     }
 
@@ -59,12 +38,11 @@ const CalculatorInput = (props: CalculatorInputProps) => {
     }
     
     const handleSelectChange = (e: SelectChangeEvent<number>) => {
-        // TODO: should we set value to 0 here?
-        setModifier(modifiers[Number(e.target.value)])
+        setModifier(db.getModifier(Number(e.target.value)))
     }
 
     const handleAddToCalculation = () => {
-        const selectedCategory = categories.find((item: OptionItem) => item.id === category);
+      const selectedCategory = db.getCategory(category);
         if (selectedCategory) {
             // TODO: make sure value is positive
             //       make sure there is a selection
@@ -79,13 +57,13 @@ const CalculatorInput = (props: CalculatorInputProps) => {
     }
 
     return (
-      <Grid container spacing={2} maxWidth="sm">
+      <Grid container spacing={2} maxWidth="sm" ref={props.innerRef}>
         <Grid item xs={12}>
           <Autocomplete
             id="unit-autocomplete"
-            options={categories}
-            groupBy={(option: OptionItem) => option.industry}
-            getOptionLabel={(option: OptionItem) => option.name}
+            options={db.getCategories()}
+            groupBy={option => option.industry}
+            getOptionLabel={option => option.name}
             onChange={handleAutocompleteChange}
             renderInput={(params) => (
               <TextField {...params} label="UpCycleable Units" />
@@ -113,7 +91,7 @@ const CalculatorInput = (props: CalculatorInputProps) => {
               onChange={handleSelectChange}
               sx={sxFill}
             >
-              {modifiers.map((modifier: ModifierItem) => (
+              {db.getModifiers().map(modifier => (
                 <MenuItem value={modifier.id} key={modifier.id}>
                   {modifier.name}
                 </MenuItem>

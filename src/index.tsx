@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import Calculator from './views/pages/CalculatorView'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import './index.css'
+import Calculator from './components/Calculator';
 
 const theme = createTheme({
   typography: {
@@ -35,11 +35,11 @@ const theme = createTheme({
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-
+      
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <Calculator />
+      <Calculator/>
     </ThemeProvider>
   </React.StrictMode>
 );
