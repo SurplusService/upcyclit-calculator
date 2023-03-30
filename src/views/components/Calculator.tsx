@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Typography, Container, } from '@mui/material';
+import { Container, } from '@mui/material';
 import CalculatorInput, { CalculationDetails } from './CalculatorInput';
 import CalculatorGraph from './CalculatorGraph';
 import CalculatorItems from './CalculatorItems';
@@ -36,7 +36,6 @@ const Calculator = () => {
             borderRadius: '5px',
             width: 'fit-content'
         }} sx={{padding: 0}}>
-            <Typography variant="h3" sx={{ marginBottom: '1rem' }}>UpCycleIT® Calculator</Typography>
             <Container style={{border: '1px dashed #CDE0EC', borderRadius: '4px'}} sx={{padding: 2}} maxWidth="lg" color="text.primary">
                 <CalculatorInput onSelect={handleSelect} />
                 <CalculatorItems items={items} onDelete={handleDelete} onUpdate={handleUpdate}></CalculatorItems>
