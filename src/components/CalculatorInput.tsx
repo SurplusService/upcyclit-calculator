@@ -16,11 +16,10 @@ export interface CalculationDetails {
 const sxFill = { width: '100%', height: '100%' }
 
 interface CalculatorInputProps {
-    /**
-     * Callback function to handle the selection of a category with modifier.
-     */
+  /**
+   * Callback function to handle the selection of a category with modifier.
+   */
   onSelect: ((details: CalculationDetails) => void)
-  innerRef?: React.Ref<HTMLDivElement>
 }
 
 
@@ -30,15 +29,15 @@ const CalculatorInput = (props: CalculatorInputProps) => {
     const [value, setValue] = useState(0);
 
     const handleAutocompleteChange = (e: any, value: db.OptionItem | null) => {
-        setCategory(value?.id || 0)
+      setCategory(value?.id || 0)
     }
 
     const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(Number(e.target.value))
+      setValue(Number(e.target.value))
     }
     
     const handleSelectChange = (e: SelectChangeEvent<number>) => {
-        setModifier(db.getModifier(Number(e.target.value)))
+      setModifier(db.getModifier(Number(e.target.value)))
     }
 
     const handleAddToCalculation = () => {
@@ -57,7 +56,7 @@ const CalculatorInput = (props: CalculatorInputProps) => {
     }
 
     return (
-      <Grid container spacing={2} maxWidth="sm" ref={props.innerRef}>
+      <Grid container spacing={2}>
         <Grid item xs={12}>
           <Autocomplete
             id="unit-autocomplete"
