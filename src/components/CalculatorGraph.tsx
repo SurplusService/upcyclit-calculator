@@ -67,6 +67,7 @@ const CalculatorGraph = (props: CalculatorGraphProps) => {
 
     interface ChartData {
         name: string
+        unit: string
         total: number
         entries: PieData[]
     }
@@ -75,6 +76,7 @@ const CalculatorGraph = (props: CalculatorGraphProps) => {
     const charts: ChartData[] = [
         {
             name: "Carbon Footprint",
+            unit: "kg CO2e",
             total: formattedItems.reduce((total, item) => {
                 return total + item.value * item.category.carbon_footprint
             }, 0),
@@ -87,6 +89,7 @@ const CalculatorGraph = (props: CalculatorGraphProps) => {
         },
         {
             name: "Energy Consumption",
+            unit: "kWh",
             total: formattedItems.reduce((total, item) => {
                 return total + item.value * item.category.energy_consumption
             }, 0),
@@ -99,6 +102,7 @@ const CalculatorGraph = (props: CalculatorGraphProps) => {
         },
         {
             name: "Methane Production",
+            unit: "kg CH4",
             total: formattedItems.reduce((total, item) => {
                 return total + item.value * item.category.methane_production
             }, 0),
@@ -134,8 +138,8 @@ const CalculatorGraph = (props: CalculatorGraphProps) => {
                             <ArrowBackIosNew fontSize="small" />
                         </IconButton>
 
-                        <Typography variant="h6" color="text.secondary">
-                            Total {charts[selectedChart].name}: {charts[selectedChart].total.toFixed(2)} 
+                        <Typography variant="h6" fontSize={18} color="text.secondary">
+                            Total {charts[selectedChart].name}: {charts[selectedChart].total.toFixed(2)} {charts[selectedChart].unit}
                         </Typography>
                         
                         <IconButton aria-label="next" onClick={handleNextButton} disabled={selectedChart+1 >= charts.length}>
