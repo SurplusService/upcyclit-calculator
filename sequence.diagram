@@ -1,0 +1,14 @@
+// https://app.zenuml.com/?src=landing
+
+UI.User {
+  options = Calculator.getOptions() {
+    recycleables = DB.getRecycleables()
+    units = DB.getUnits()
+  }
+  
+  estimate = Calculator.addToCalculation(recycleable, unit, amount) {
+    DB.validateRecycleable(recycleable)
+    DB.validateUnit(unit)
+    DB.validateAmount(amount)
+  }
+}

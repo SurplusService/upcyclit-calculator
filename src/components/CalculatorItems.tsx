@@ -100,7 +100,6 @@ const ModalComp = (props: ModalCompProps) => {
 		// Find a modifier in an array of modifiers by id
 		let selectedModifier = db.getModifier(Number(e.target.value))
 		if (!selectedModifier) {
-			console.log("HELP 1!")
 			return
 		}
 

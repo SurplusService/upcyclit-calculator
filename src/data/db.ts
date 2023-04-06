@@ -1,3 +1,5 @@
+import Airtable from "airtable";
+
 export interface OptionItem {
   id: number;
   name: string;
@@ -14,7 +16,39 @@ export interface ModifierItem {
   label: string;
 }
 
-const categories: OptionItem[] = require("./categories.json");
+const base = new Airtable({
+  apiKey: process.env.REACT_APP_AIRTABLE_API_KEY,
+}).base(process.env.REACT_APP_AIRTABLE_BASE_ID);
+
+let categories: OptionItem[] = [];
+
+export const init = () =>
+  new Promise((resolve, reject) => {
+    base(process.env.REACT_APP_AIRTABLE_TABLE_ID)
+      .select({ view: "Grid view" })
+      .all()
+      .then((records) => {
+        categories = records.map((record) => {
+          return {
+            id: record.get("ID") as number,
+            name: record.get("Catagories ") as string,
+            industry: record.get("Industry ") as string,
+            type: record.get("Type ") as string,
+            carbon_footprint: record.get(
+              "Carbon Footprint (kg C02e)"
+            ) as number,
+            energy_consumption: record.get(
+              "Energy Consumption (kWh)"
+            ) as number,
+            methane_production: record.get(
+              "Methane Production (kg CH4)"
+            ) as number,
+          };
+        });
+        resolve(null);
+      });
+  });
+
 const modifiers: ModifierItem[] = [
   { id: 0, name: "Quantity", label: "x" },
   { id: 1, name: "Weight (lbs)", label: "lb(s)" },

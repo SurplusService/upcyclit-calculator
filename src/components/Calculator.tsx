@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Stack } from '@mui/material';
 import CalculatorInput, { CalculationDetails } from './CalculatorInput';
 import CalculatorGraph from './CalculatorGraph';
 import CalculatorItems from './CalculatorItems';
 import CreatabilityForm from './CreatabilityForm';
+import * as db from '../data/db';
 
 
 const Calculator = () => {
@@ -65,4 +66,22 @@ const Calculator = () => {
     );
 }
 
-export default Calculator;
+function CalculatorWrapper() {
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        db.init().then(() => {
+            setLoading(false)
+        })
+    }, []);
+
+    if (loading) {
+        return <div>Loading...</div>
+    }
+
+    return (
+        <Calculator/>
+    );
+}
+
+export default CalculatorWrapper;
