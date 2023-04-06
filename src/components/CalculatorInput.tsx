@@ -35,7 +35,7 @@ const CalculatorInput = (props: CalculatorInputProps) => {
     const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setValue(Number(e.target.value))
     }
-    
+
     const handleSelectChange = (e: SelectChangeEvent<number>) => {
       setModifier(db.getModifier(Number(e.target.value)))
     }
@@ -74,6 +74,9 @@ const CalculatorInput = (props: CalculatorInputProps) => {
             id="modifier-number"
             label={modifier.name}
             type="number"
+            InputProps={{
+              inputProps: {min:0}
+            }}
             onChange={handleValueChange}
             value={value}
             sx={sxFill}
