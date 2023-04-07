@@ -45,14 +45,17 @@ const style = {
 
 const CalculatorItems = (props: CalculatorItemsProps) => {
 	return (
-		<List>
+		<List sx={{
+			padding: 0,
+		}}>
 			{
-				props.items.map((item) => (
-					<ListItem style={{
-						background: 'rgba(0, 148, 68, .2)',
-						borderRadius: '5px',
-						marginBottom: '.5rem',
-					}}
+				props.items.map((item, index) => (
+					<ListItem
+						sx={{
+							background: 'rgba(0, 148, 68, .2)',
+							borderRadius: '5px',
+							marginBottom: index !== props.items.length - 1 ? '.5rem' : 0,
+						}}
 						key={`${item.category.id}_${item.modifier.id}`}
 						secondaryAction={
 							<IconButton
@@ -61,7 +64,6 @@ const CalculatorItems = (props: CalculatorItemsProps) => {
 							>
 								<DeleteIcon />
 							</IconButton>
-
 						}
 					>
 						<ListItemText primary={item.category.name} secondary={`${item.value} ${item.modifier.label}`} />
@@ -100,7 +102,6 @@ const ModalComp = (props: ModalCompProps) => {
 		// Find a modifier in an array of modifiers by id
 		let selectedModifier = db.getModifier(Number(e.target.value))
 		if (!selectedModifier) {
-			console.log("HELP 1!")
 			return
 		}
 
