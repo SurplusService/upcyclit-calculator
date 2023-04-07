@@ -57,7 +57,7 @@ const CalculatorInput = (props: CalculatorInputProps) => {
 
     return (
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid item sm={3} xs={7}>
           <Autocomplete
             id="unit-autocomplete"
             options={db.getCategories()}
@@ -65,24 +65,11 @@ const CalculatorInput = (props: CalculatorInputProps) => {
             getOptionLabel={option => option.name}
             onChange={handleAutocompleteChange}
             renderInput={(params) => (
-              <TextField {...params} label="UpCycleable Units" />
+              <TextField {...params} label="UpcyclIT® Unit" />
             )}
           />
         </Grid>
-        <Grid item sm={3} xs={6}>
-          <TextField
-            id="modifier-number"
-            label={modifier.name}
-            type="number"
-            InputProps={{
-              inputProps: {min:0}
-            }}
-            onChange={handleValueChange}
-            value={value}
-            sx={sxFill}
-          />
-        </Grid>
-        <Grid item sm={3} xs={6}>
+        <Grid item sm={3} xs={5}>
           <FormControl fullWidth>
             <InputLabel id="units-label">Units</InputLabel>
             <Select
@@ -101,7 +88,20 @@ const CalculatorInput = (props: CalculatorInputProps) => {
             </Select>
           </FormControl>
         </Grid>
-        <Grid item sm={6} xs={12}>
+        <Grid item sm={3} xs={5}>
+          <TextField
+            id="modifier-number"
+            label={modifier.name}
+            type="number"
+            InputProps={{
+              inputProps: {min:0}
+            }}
+            onChange={handleValueChange}
+            value={value}
+            sx={sxFill}
+          />
+        </Grid>
+        <Grid item sm={3} xs={7}>
           <Button
             variant="contained"
             size="large"

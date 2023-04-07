@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button, Stack } from '@mui/material';
 import CalculatorInput, { CalculationDetails } from './CalculatorInput';
 import CalculatorGraph from './CalculatorGraph';
@@ -44,22 +44,52 @@ const Calculator = () => {
         setOpen(true)
     }
 
+    const [overflowActive, setOverflowActive] = useState(false);
+
+    const textRef = useRef<HTMLElement>(null);
+
+    function isOverflowActive(el: HTMLElement) {
+        return el.offsetHeight < el.scrollHeight
+    }
+
+    useEffect(() => {
+        if (textRef.current && isOverflowActive(textRef.current)) {
+            setOverflowActive(true);
+            return;
+        }
+
+        setOverflowActive(false);
+    }, [items]);
+
     return (
         open ? (
             <CreatabilityForm lineItems={ lineItems } />
         ) : <div style={{ height: '100%', width: '100%', padding: '1rem', border: '1px dashed #cde0ec', borderRadius: '4px', boxSizing: 'border-box'}}>
             <Stack sx={{ height: '100%' }} alignItems="center">
                 <CalculatorInput onSelect={handleSelect} />
-                <Stack mt={2} sx={{ flex: 1, overflowY: 'auto', width: '100%' }}>
+                    <Stack
+                        ref={textRef}
+                        mt={2}
+                        sx={{
+                        flex: 1,
+                        overflowY: 'auto',
+                        width: '100%',
+                        boxShadow: overflowActive ? 'inset 0px 20px 5px -20px #888, inset 0px -20px 5px -20px #888' : undefined,
+                        borderRadius: '5px',
+                    }}>
                     <CalculatorItems items={items} onDelete={handleDelete} onUpdate={handleUpdate} />
-                    {(items.length > 0) && <Button
-                        variant="contained"
-                        size="large"
-                        onClick={showForm}
-                    >
-                        Send Me The Results
-                    </Button>}
                 </Stack>
+                {(items.length > 0) && <Button
+                    variant="contained"
+                    size="large"
+                        onClick={showForm}
+                        sx={{
+                            width: '100%',
+                            marginTop: '0.5rem',
+                        }}
+                >
+                    Send Me The Results
+                </Button>}
                 <CalculatorGraph items={items} />
             </Stack>
         </div>
