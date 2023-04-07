@@ -89,20 +89,16 @@ interface CalculatorGraphProps {
     items: CalculationDetails[]
 }
 
-/**CalculatorGraph is the component for the calculator graph. */
-const CalculatorGraph = (props: CalculatorGraphProps) => {
-    const [selectedChart, setSelectedChart] = useState(0)
-
+export const generateChartData = (items: CalculationDetails[]): ChartData[] => {
     // convert all items to the same unit of measurement
-    const formattedItems = props.items.map((item) => {
+    const formattedItems = items.map((item) => {
         return {
             category: item.category,
             value: item.value * CONVERSIONS[item.modifier.id]
         }
     })
-
-    /**charts is the array of information needed for each chart. */
-    const charts: ChartData[] = [
+    
+    return [
         {
             name: "Carbon Footprint",
             unit: units.carbonFootprint,
@@ -143,7 +139,15 @@ const CalculatorGraph = (props: CalculatorGraphProps) => {
             })
         }
     ]
+}
 
+/**CalculatorGraph is the component for the calculator graph. */
+const CalculatorGraph = (props: CalculatorGraphProps) => {
+    const [selectedChart, setSelectedChart] = useState(0)
+
+    /**charts is the array of information needed for each chart. */
+    const charts: ChartData[] = generateChartData(props.items)
+    
     /**handleBackButton is the callback function for the back button. It switched to previous chart */
     const handleBackButton = () => {
         if (selectedChart > 0) {

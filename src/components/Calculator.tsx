@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Button, Stack, CircularProgress } from '@mui/material';
 import CalculatorInput, { CalculationDetails } from './CalculatorInput';
-import CalculatorGraph from './CalculatorGraph';
+import CalculatorGraph, { generateChartData } from './CalculatorGraph';
 import CalculatorItems from './CalculatorItems';
 import CreatabilityForm from './CreatabilityForm';
 import * as db from '../data/db';
@@ -58,10 +58,19 @@ const Calculator = () => {
     const [open, setOpen] = useState(false)
 
     const showForm = () => { 
-        setLineItems('')
-        items.forEach((item) => {
-            setLineItems((lineItems) => lineItems + `${item.category.name}: ${item.value} ${item.modifier.label}\n`)
-        })
+        setLineItems(
+            'Items:\n' +
+            items.reduce(
+                (lineItems, item) =>
+                    `${lineItems}${item.category.name}: ${item.value} ${item.modifier.label}\n`,
+                ''
+            ) 
+            + '\nResults:\n' +
+            generateChartData(items).reduce(
+                (lineItems, item) => `${lineItems}${item.name}: ${item.total} ${item.unit}\n`,
+                ''
+            )
+        )
         setOpen(true)
     }
 
