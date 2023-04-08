@@ -67,7 +67,7 @@ const CalculatorItems = (props: CalculatorItemsProps) => {
 						}
 					>
 						<ListItemText primary={item.category.name} secondary={`${item.value} ${item.modifier.label}`} />
-						<ModalComp item={item} onUpdate={props.onUpdate}></ModalComp>
+						<ModalComp item={item} onUpdate={props.onUpdate} onDelete={props.onDelete}></ModalComp>
 					</ListItem>
 				))
 			}
@@ -78,6 +78,7 @@ const CalculatorItems = (props: CalculatorItemsProps) => {
 interface ModalCompProps {
 	item: CalculationDetails,
 	onUpdate: (id: number, updatedItem: CalculationDetails) => void
+	onDelete: (id: number) => void
 }
 
 const ModalComp = (props: ModalCompProps) => {
@@ -88,6 +89,9 @@ const ModalComp = (props: ModalCompProps) => {
 
 	const handleUpdate = () => {
 		props.onUpdate(item.category.id, item)
+		if(item.value==0){
+			props.onDelete(item.category.id)
+		}
 		handleClose()
 	}
 
@@ -135,6 +139,13 @@ const ModalComp = (props: ModalCompProps) => {
 							label={item.modifier.name}
 							type="number"
 							defaultValue={item.value}
+								InputProps={{
+									inputProps: { min: 0 }
+								}}
+								onFocus={event => {
+									const target = event.target;
+									setTimeout(() => target.select(), 0);
+								}}
 							onChange={handleQuantityChange}
 						/>
 					</Grid>

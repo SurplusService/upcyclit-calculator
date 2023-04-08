@@ -33,6 +33,10 @@ const CalculatorInput = (props: CalculatorInputProps) => {
     }
 
     const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if(Math.sign(Number(e.target.value))==-1){
+        setValue(0)
+        return
+      }
       setValue(Number(e.target.value))
     }
 
@@ -42,6 +46,8 @@ const CalculatorInput = (props: CalculatorInputProps) => {
 
     const handleAddToCalculation = () => {
       const selectedCategory = db.getCategory(category);
+      if(value==0)
+        return
         if (selectedCategory) {
             // TODO: make sure value is positive
             //       make sure there is a selection
@@ -95,6 +101,10 @@ const CalculatorInput = (props: CalculatorInputProps) => {
             type="number"
             InputProps={{
               inputProps: {min:0}
+            }}
+            onFocus={event => {
+              const target = event.target;
+              setTimeout(() => target.select(), 0);
             }}
             onChange={handleValueChange}
             value={value}
