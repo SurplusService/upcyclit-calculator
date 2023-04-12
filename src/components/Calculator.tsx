@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Button, Stack, CircularProgress, Popover, Typography } from '@mui/material';
+import { Button, Stack, CircularProgress} from '@mui/material';
 import CalculatorInput, { CalculationDetails } from './CalculatorInput';
 import CalculatorGraph, { generateChartData } from './CalculatorGraph';
 import CalculatorItems from './CalculatorItems';
@@ -55,18 +55,6 @@ const Calculator = () => {
         setItems(newItems)
     }
 
-    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const openAnchor = Boolean(anchorEl);
-    const id = openAnchor ? 'simple-popover' : undefined;
 
 
     const [open, setOpen] = useState(false)
@@ -122,21 +110,7 @@ const Calculator = () => {
                     boxShadow: overflowActive ? 'inset 0px 20px 5px -20px #888, inset 0px -20px 5px -20px #888' : undefined,
                     borderRadius: '5px',
                 }}>
-                    <Button aria-describedby={id} variant="contained" onClick={handleClick}>
-                        HELP
-                    </Button>
-                    <Popover
-                        id={id}
-                        open={openAnchor}
-                        anchorEl={anchorEl}
-                        onClose={handleClose}
-                        anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
-                        }}
-                    >
-                        <Typography sx={{ p: 2 }}>Instruction of the calculator comes here.</Typography>
-                    </Popover>
+                    
                     <CalculatorItems items={items} onDelete={handleDelete} onUpdate={handleUpdate} />
                 </Stack>
             {(items.length > 0) && <Button
