@@ -29,8 +29,20 @@ const containerStyle = {
 };
 
 const Calculator = () => {
+    const [categories, setCategories] = useState(db.getCategories());
     const [items, setItems] = useState<CalculationDetails[]>([])
     const [lineItems, setLineItems] = useState('')
+
+    useEffect(() => {
+        setCategories(
+            db.getCategories()
+                .filter((category) =>
+                    items.find((item) =>
+                        item.category.id === category.id
+                    ) === undefined
+                )
+        )
+    }, [items])
 
     const handleSelect = (details: CalculationDetails) => {
         setItems([...items, details])
@@ -95,7 +107,7 @@ const Calculator = () => {
         open ? (
             <CreatabilityForm lineItems={ lineItems } />
         ) : <Stack sx={containerStyle} alignItems="center">
-            <CalculatorInput onSelect={handleSelect} />
+            <CalculatorInput categories={categories} onSelect={handleSelect} />
                 <Stack
                     ref={textRef}
                     mt={2}

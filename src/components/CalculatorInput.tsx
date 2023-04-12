@@ -1,72 +1,122 @@
 import React, { useState } from 'react';
 import {
-    SelectChangeEvent, Autocomplete, TextField,
-    FormControl, InputLabel,
-    Select, MenuItem, Button, Grid
+  SelectChangeEvent, Autocomplete, TextField,
+  FormControl, InputLabel,
+  Select, MenuItem, Button, Grid,
+  Alert, Snackbar
 } from '@mui/material';
 
 import * as db from '../data/db';
 
-export interface CalculationDetails {
-    category: db.OptionItem;
-    modifier: db.ModifierItem;
-    value: number;
+export interface CalculationDetails {    category: db.OptionItem;
+  modifier: db.ModifierItem;
+  value: number;
 }
 
 const sxFill = { width: '100%', height: '100%' }
 
 interface CalculatorInputProps {
-  /**
-   * Callback function to handle the selection of a category with modifier.
-   */
-  onSelect: ((details: CalculationDetails) => void)
+  categories: db.OptionItem[];
+
+/**
+ * Callback function to handle the selection of a category with modifier.
+ */
+onSelect: ((details: CalculationDetails) => void)
 }
 
 
 const CalculatorInput = (props: CalculatorInputProps) => {
-    const [category, setCategory] = useState(0);
-    const [modifier, setModifier] = useState(db.getModifier(0));
-    const [value, setValue] = useState(0);
+  const [category, setCategory] = useState(0);
+  const [modifier, setModifier] = useState(db.getModifier(0));
+  const [value, setValue] = useState(0);
+  const [errorNoCategory, setErrorNoCategory] = useState(false);
+  const [errorNoValue, setErrorNoValue] = useState(false);
+
+  // This is a hack to reset the autocomplete field
+  const [autocompleteKey, setAutocompleteKey] = useState(Math.random());
 
     const handleAutocompleteChange = (e: any, value: db.OptionItem | null) => {
       setCategory(value?.id || 0)
     }
 
     const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      if(Math.sign(Number(e.target.value))==-1){
-        setValue(0)
-        return
-      }
+      const newValue = Number(e.target.value.replace(/-/g, '') || 0);
       setValue(Number(e.target.value))
+      if (newValue === 0) {
+        setTimeout(() => {
+          e.target.select()
+        }, 0);
+      }
     }
 
     const handleSelectChange = (e: SelectChangeEvent<number>) => {
       setModifier(db.getModifier(Number(e.target.value)))
     }
 
-    const handleAddToCalculation = () => {
-      const selectedCategory = db.getCategory(category);
-      if(value==0)
+  const handleAddToCalculation = () => {
+      if (category === 0) {
+        setErrorNoCategory(true)
         return
-        if (selectedCategory) {
-            // TODO: make sure value is positive
-            //       make sure there is a selection
-            props.onSelect({
-                category: selectedCategory,
-                modifier: modifier,
-                value: value,
-            });
-        } else {
-            // TODO: ask user to place a selection
-        }
+      }
+    
+      const selectedCategory = db.getCategory(category);
+
+      if (value === 0) {
+        setErrorNoValue(true)
+        return
+      }
+
+    if (selectedCategory) {
+      setCategory(0)
+      setAutocompleteKey(Math.random())
+      props.onSelect({
+          category: selectedCategory,
+          modifier: modifier,
+          value: value,
+      });
+      } else {
+          // TODO: ask user to place a selection
+      }
     }
 
-    return (
+  return (
+    <>
+      <Snackbar
+        open={errorNoCategory}
+        onClose={(event, reason) => {
+          if (reason === 'clickaway') {
+            return;
+          }
+          if (reason === 'escapeKeyDown') {
+            event.preventDefault();
+          }
+          setErrorNoCategory(false)
+        }}
+        autoHideDuration={5000}
+      >
+        <Alert severity="error" sx={{ width: '100%', margin: '.5rem' }}>Please select a category.</Alert>
+      </Snackbar>
+      <Snackbar
+        open={errorNoValue}
+        onClose={(event, reason) => {
+          if (reason === 'clickaway') {
+            return;
+          }
+          if (reason === 'escapeKeyDown') {
+            event.preventDefault();
+          }
+          setErrorNoValue(false)
+        }}
+        autoHideDuration={5000}
+      >
+        <Alert severity="error" sx={{ width: '100%', margin: '.5rem' }}>Please enter a value.</Alert>
+      </Snackbar>
       <Grid container spacing={2}>
         <Grid item sm={3} xs={7}>
           <Autocomplete
+            key={autocompleteKey}
             id="unit-autocomplete"
-            options={db.getCategories()}
+            options={props.categories}
             groupBy={option => option.industry}
             getOptionLabel={option => option.name}
             onChange={handleAutocompleteChange}
@@ -122,6 +172,7 @@ const CalculatorInput = (props: CalculatorInputProps) => {
           </Button>
         </Grid>
       </Grid>
+      </>
     );
 }
 

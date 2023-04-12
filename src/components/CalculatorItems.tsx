@@ -89,7 +89,7 @@ const ModalComp = (props: ModalCompProps) => {
 
 	const handleUpdate = () => {
 		props.onUpdate(item.category.id, item)
-		if(item.value==0){
+		if(item.value === 0){
 			props.onDelete(item.category.id)
 		}
 		handleClose()
