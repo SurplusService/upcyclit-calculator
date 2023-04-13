@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SelectChangeEvent, Autocomplete, TextField,
   FormControl, InputLabel,
@@ -17,15 +17,16 @@ const sxFill = { width: '100%', height: '100%' }
 
 interface CalculatorInputProps {
   categories: db.OptionItem[];
-
-/**
- * Callback function to handle the selection of a category with modifier.
- */
-onSelect: ((details: CalculationDetails) => void)
+  items: CalculationDetails[]
+  /**
+   * Callback function to handle the selection of a category with modifier.
+   */
+  onSelect: ((details: CalculationDetails) => void)
 }
 
 
 const CalculatorInput = (props: CalculatorInputProps) => {
+  const [innerCategories, setInnerCategories] = useState(props.categories);
   const [category, setCategory] = useState(0);
   const [modifier, setModifier] = useState(db.getModifier(0));
   const [value, setValue] = useState(0);
@@ -34,6 +35,21 @@ const CalculatorInput = (props: CalculatorInputProps) => {
 
   // This is a hack to reset the autocomplete field
   const [autocompleteKey, setAutocompleteKey] = useState(Math.random());
+
+  useEffect(() => {
+        const filteredCategories = props.categories
+                .filter((category) =>
+                    props.items.find((item) =>
+                        item.category.id === category.id
+                    ) === undefined
+        )
+        console.log(filteredCategories);
+        
+        setInnerCategories(
+            filteredCategories
+            // db.getCategories()
+        )
+    }, [props.categories, props.items])
 
     const handleAutocompleteChange = (e: any, value: db.OptionItem | null) => {
       setCategory(value?.id || 0)
@@ -67,13 +83,15 @@ const CalculatorInput = (props: CalculatorInputProps) => {
       }
 
     if (selectedCategory) {
-      setCategory(0)
       setAutocompleteKey(Math.random())
-      props.onSelect({
+      setTimeout(() => {
+        setCategory(0)
+        props.onSelect({
           category: selectedCategory,
           modifier: modifier,
           value: value,
-      });
+        });
+      }, 100);
       } else {
           // TODO: ask user to place a selection
       }
@@ -116,7 +134,7 @@ const CalculatorInput = (props: CalculatorInputProps) => {
           <Autocomplete
             key={autocompleteKey}
             id="unit-autocomplete"
-            options={props.categories}
+            options={innerCategories}
             groupBy={option => option.industry}
             getOptionLabel={option => option.name}
             onChange={handleAutocompleteChange}

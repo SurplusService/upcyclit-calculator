@@ -7,18 +7,6 @@ import CreatabilityForm from './CreatabilityForm';
 import * as db from '../data/db';
 import { circularProgressClasses } from '@mui/material/CircularProgress';
 
-// const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-//   height: 10,
-//   borderRadius: 5,
-//   [`&.${linearProgressClasses.colorPrimary}`]: {
-//     backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
-//   },
-//   [`& .${linearProgressClasses.bar}`]: {
-//     borderRadius: 5,
-//     backgroundColor: theme.palette.mode === 'light' ? '#1a90ff' : '#308fe8',
-//   },
-// }));
-
 const containerStyle = {
     padding: '1rem',
     height: '100%',
@@ -29,20 +17,8 @@ const containerStyle = {
 };
 
 const Calculator = () => {
-    const [categories, setCategories] = useState(db.getCategories());
     const [items, setItems] = useState<CalculationDetails[]>([])
     const [lineItems, setLineItems] = useState('')
-
-    useEffect(() => {
-        setCategories(
-            db.getCategories()
-                .filter((category) =>
-                    items.find((item) =>
-                        item.category.id === category.id
-                    ) === undefined
-                )
-        )
-    }, [items])
 
     const handleSelect = (details: CalculationDetails) => {
         setItems([...items, details])
@@ -103,11 +79,13 @@ const Calculator = () => {
         setOverflowActive(false);
     }, [items]);
 
+    console.log('calculator render')
+
     return (
         open ? (
             <CreatabilityForm lineItems={ lineItems } />
         ) : <Stack sx={containerStyle} alignItems="center">
-            <CalculatorInput categories={categories} onSelect={handleSelect} />
+                <CalculatorInput items={items} categories={db.getCategories()} onSelect={handleSelect} />
                 <Stack
                     ref={textRef}
                     mt={2}
@@ -144,6 +122,8 @@ function CalculatorWrapper() {
             setLoading(false)
         })
     }, []);
+
+    console.log('here')
 
     if (loading) {
         return (
