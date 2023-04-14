@@ -109,10 +109,12 @@ const Calculator = () => {
                     width: '100%',
                     boxShadow: overflowActive ? 'inset 0px 20px 5px -20px #888, inset 0px -20px 5px -20px #888' : undefined,
                     borderRadius: '5px',
-                }}>
+                }}> 
                     
                     <CalculatorItems items={items} onDelete={handleDelete} onUpdate={handleUpdate} />
                 </Stack>
+
+                <CalculatorGraph items={items} />
             {(items.length > 0) && <Button
                 variant="contained"
                 size="large"
@@ -124,7 +126,7 @@ const Calculator = () => {
             >
                 Send Me The Results
             </Button>}
-            <CalculatorGraph items={items} />
+            
         </Stack>
     );
 }

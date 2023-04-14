@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
     SelectChangeEvent, Autocomplete, TextField,
     FormControl, InputLabel,
-    Select, MenuItem, Button, Grid, Popover, Typography
+    Select, MenuItem, Button, Grid,
 } from '@mui/material';
 
 import * as db from '../data/db';
@@ -27,20 +27,6 @@ const CalculatorInput = (props: CalculatorInputProps) => {
     const [category, setCategory] = useState(0);
     const [modifier, setModifier] = useState(db.getModifier(0));
     const [value, setValue] = useState(0);
-
-    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const openAnchor = Boolean(anchorEl);
-    const id = openAnchor ? 'simple-popover' : undefined;
-
 
     const handleAutocompleteChange = (e: any, value: db.OptionItem | null) => {
       setCategory(value?.id || 0)
@@ -70,29 +56,7 @@ const CalculatorInput = (props: CalculatorInputProps) => {
     }
 
     return (
-      <Grid container spacing={2}>
-        <Grid item sm={3} xs={7}>
-          <Button
-            aria-describedby={id}
-            variant="contained"
-            onClick={handleClick}
-            sx={sxFill}
-          >
-            HELP
-          </Button>
-          <Popover
-            id={id}
-            open={openAnchor}
-            anchorEl={anchorEl}
-            onClose={handleClose}
-            anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-            }}
-          >
-            <Typography sx={{ p: 2 }}>Instruction of the calculator comes here.</Typography>
-          </Popover>
-        </Grid>
+      <Grid container spacing={2}>        
         <Grid item sm={3} xs={7}>
           <Autocomplete
             id="unit-autocomplete"

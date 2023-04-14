@@ -1,8 +1,7 @@
 import { ResponsiveContainer, PieChart, Pie, Tooltip, Cell } from "recharts"
 import { CalculationDetails } from "./CalculatorInput"
-import { Grid, Typography, IconButton, Box, Card } from "@mui/material"
-import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material"
-import { useState } from "react"
+import { Grid, Typography, Box, Card, Tab, Tabs } from "@mui/material"
+import * as React from 'react';
 
 
 /**COLORS is the colors for each category. The index of the array is the category id. */
@@ -141,45 +140,92 @@ export const generateChartData = (items: CalculationDetails[]): ChartData[] => {
     ]
 }
 
+
+interface TabPanelProps {
+    children?: React.ReactNode;
+    index: number;
+    value: number;
+  }
+  
+  function TabPanel(props: TabPanelProps) {
+    const { children, value, index, ...other } = props;
+  
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+      >
+        {value === index && (
+          <Box sx={{ p: 3 }}>
+            <Typography>{children}</Typography>
+          </Box>
+        )}
+      </div>
+    );
+  }
+  
+  function a11yProps(index: number) {
+    return {
+      id: `simple-tab-${index}`,
+      'aria-controls': `simple-tabpanel-${index}`,
+    };
+  }
+  
+
+
+
 /**CalculatorGraph is the component for the calculator graph. */
 const CalculatorGraph = (props: CalculatorGraphProps) => {
-    const [selectedChart, setSelectedChart] = useState(0)
-
     /**charts is the array of information needed for each chart. */
     const charts: ChartData[] = generateChartData(props.items)
+
+
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+        setValue(newValue);
+    };
+
     
-    /**handleBackButton is the callback function for the back button. It switched to previous chart */
-    const handleBackButton = () => {
-        if (selectedChart > 0) {
-            setSelectedChart(selectedChart - 1)
-        }
-    }
-
-    /**handleNextButton is the callback function for the next button. It switches to next chart */
-    const handleNextButton = () => {
-        if (selectedChart < charts.length - 1) {
-            setSelectedChart(selectedChart + 1)
-        }
-    }
-
     return (
         <Grid container spacing={0} maxWidth="sm" mt={2}>
             {props.items.length > 0 ?
-                <Grid item xs={12}>
-                    <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }} alignContent="center">
-                        <IconButton aria-label="back" onClick={handleBackButton} disabled={selectedChart - 1 < 0}>
-                            <ArrowBackIosNew fontSize="small" />
-                        </IconButton>
+                <Box sx={{ width: '100%' }}>
 
-                        <Typography variant="h6" fontSize={18} color="text.secondary">
-                            Total {charts[selectedChart].name}: {round(charts[selectedChart].total)} {charts[selectedChart].unit}
-                        </Typography>
-
-                        <IconButton aria-label="next" onClick={handleNextButton} disabled={selectedChart + 1 >= charts.length}>
-                            <ArrowForwardIos fontSize="small" />
-                        </IconButton>
+                    <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                        <Box sx={{ width: '100%', maxWidth: '960px', borderBottom: 1, borderColor: 'divider', justifyContent: 'center' }}>
+                            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                                    <Tab label="Carbon" {...a11yProps(0)} />
+                                    <Tab label="Energy" {...a11yProps(1)} />
+                                    <Tab label="Methane" {...a11yProps(2)} />
+                                </Tabs>
+                            </Box>
+                        </Box>
                     </Box>
-                </Grid>
+
+                    <TabPanel value={value} index={0}>
+                        <Typography variant="h6" fontSize={18} color="text.secondary" style={{textAlign: "center"}}>
+                            Total {charts[0].name}: {round(charts[0].total)} {charts[0].unit}
+                        </Typography>
+                        <CustomPieChart chart={charts[0]} />
+                    </TabPanel>
+                    <TabPanel value={value} index={1}>
+                        <Typography variant="h6" fontSize={18} color="text.secondary" style={{textAlign: "center"}}>
+                            Total {charts[1].name}: {round(charts[1].total)} {charts[1].unit}
+                        </Typography>
+                        <CustomPieChart chart={charts[1]} />
+                    </TabPanel>
+                    <TabPanel value={value} index={2}>
+                        <Typography variant="h6" fontSize={18} color="text.secondary" style={{textAlign: "center"}}>
+                            Total {charts[2].name}: {round(charts[2].total)} {charts[2].unit}
+                        </Typography>
+                        <CustomPieChart chart={charts[2]} />
+                    </TabPanel>
+                </Box>
                 :
                 <Grid item xs={12}>
                     <Typography variant="body1" color="text.secondary" align="center">
@@ -187,11 +233,8 @@ const CalculatorGraph = (props: CalculatorGraphProps) => {
                     </Typography>
                 </Grid>
             }
-            <Grid item xs={12}>
-                <CustomPieChart chart={charts[selectedChart]} />
-            </Grid>
         </Grid>
-    )
+    );
 }
 
 export default CalculatorGraph
