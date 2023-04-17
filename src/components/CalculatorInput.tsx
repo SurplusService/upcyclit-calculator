@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-    SelectChangeEvent, Autocomplete, TextField,
-    FormControl, InputLabel,
-    Select, MenuItem, Button, Grid
+  SelectChangeEvent, Autocomplete, TextField,
+  FormControl, InputLabel,
+  Select, MenuItem, Button, Grid,
+  Alert, Snackbar
 } from '@mui/material';
 
 import * as db from '../data/db';
 
-export interface CalculationDetails {
-    category: db.OptionItem;
-    modifier: db.ModifierItem;
-    value: number;
+export interface CalculationDetails {    category: db.OptionItem;
+  modifier: db.ModifierItem;
+  value: number;
 }
 
 const sxFill = { width: '100%', height: '100%' }
 
 interface CalculatorInputProps {
+  categories: db.OptionItem[];
+  items: CalculationDetails[]
   /**
    * Callback function to handle the selection of a category with modifier.
    */
@@ -24,43 +26,115 @@ interface CalculatorInputProps {
 
 
 const CalculatorInput = (props: CalculatorInputProps) => {
-    const [category, setCategory] = useState(0);
-    const [modifier, setModifier] = useState(db.getModifier(0));
-    const [value, setValue] = useState(0);
+  const [innerCategories, setInnerCategories] = useState(props.categories);
+  const [category, setCategory] = useState(0);
+  const [modifier, setModifier] = useState(db.getModifier(0));
+  const [value, setValue] = useState(0);
+  const [errorNoCategory, setErrorNoCategory] = useState(false);
+  const [errorNoValue, setErrorNoValue] = useState(false);
+
+  // This is a hack to reset the autocomplete field
+  const [autocompleteKey, setAutocompleteKey] = useState(Math.random());
+
+  useEffect(() => {
+        const filteredCategories = props.categories
+                .filter((category) =>
+                    props.items.find((item) =>
+                        item.category.id === category.id
+                    ) === undefined
+        )
+        console.log(filteredCategories);
+        
+        setInnerCategories(
+            filteredCategories
+            // db.getCategories()
+        )
+    }, [props.categories, props.items])
 
     const handleAutocompleteChange = (e: any, value: db.OptionItem | null) => {
       setCategory(value?.id || 0)
     }
 
     const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newValue = Number(e.target.value.replace(/-/g, '') || 0);
       setValue(Number(e.target.value))
+      if (newValue === 0) {
+        setTimeout(() => {
+          e.target.select()
+        }, 0);
+      }
     }
 
     const handleSelectChange = (e: SelectChangeEvent<number>) => {
       setModifier(db.getModifier(Number(e.target.value)))
     }
 
-    const handleAddToCalculation = () => {
+  const handleAddToCalculation = () => {
+      if (category === 0) {
+        setErrorNoCategory(true)
+        return
+      }
+    
       const selectedCategory = db.getCategory(category);
-        if (selectedCategory) {
-            // TODO: make sure value is positive
-            //       make sure there is a selection
-            props.onSelect({
-                category: selectedCategory,
-                modifier: modifier,
-                value: value,
-            });
-        } else {
-            // TODO: ask user to place a selection
-        }
+
+      if (value === 0) {
+        setErrorNoValue(true)
+        return
+      }
+
+    if (selectedCategory) {
+      setAutocompleteKey(Math.random())
+      setTimeout(() => {
+        setCategory(0)
+        props.onSelect({
+          category: selectedCategory,
+          modifier: modifier,
+          value: value,
+        });
+      }, 100);
+      } else {
+          // TODO: ask user to place a selection
+      }
     }
 
-    return (
+  return (
+    <>
+      <Snackbar
+        open={errorNoCategory}
+        onClose={(event, reason) => {
+          if (reason === 'clickaway') {
+            return;
+          }
+          if (reason === 'escapeKeyDown') {
+            event.preventDefault();
+          }
+          setErrorNoCategory(false)
+        }}
+        autoHideDuration={5000}
+      >
+        <Alert severity="error" sx={{ width: '100%', margin: '.5rem' }}>Please select a category.</Alert>
+      </Snackbar>
+      <Snackbar
+        open={errorNoValue}
+        onClose={(event, reason) => {
+          if (reason === 'clickaway') {
+            return;
+          }
+          if (reason === 'escapeKeyDown') {
+            event.preventDefault();
+          }
+          setErrorNoValue(false)
+        }}
+        autoHideDuration={5000}
+      >
+        <Alert severity="error" sx={{ width: '100%', margin: '.5rem' }}>Please enter a value.</Alert>
+      </Snackbar>
       <Grid container spacing={2}>
         <Grid item sm={3} xs={7}>
           <Autocomplete
+            key={autocompleteKey}
             id="unit-autocomplete"
-            options={db.getCategories()}
+            options={innerCategories}
             groupBy={option => option.industry}
             getOptionLabel={option => option.name}
             onChange={handleAutocompleteChange}
@@ -96,6 +170,10 @@ const CalculatorInput = (props: CalculatorInputProps) => {
             InputProps={{
               inputProps: {min:0}
             }}
+            onFocus={event => {
+              const target = event.target;
+              setTimeout(() => target.select(), 0);
+            }}
             onChange={handleValueChange}
             value={value}
             sx={sxFill}
@@ -112,6 +190,7 @@ const CalculatorInput = (props: CalculatorInputProps) => {
           </Button>
         </Grid>
       </Grid>
+      </>
     );
 }
 

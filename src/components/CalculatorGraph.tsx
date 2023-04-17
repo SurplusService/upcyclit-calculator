@@ -69,8 +69,8 @@ const CustomPieChart = (props: CustomPieChartProps) => {
             <ResponsiveContainer width="100%" height={400}>
                 <PieChart>
                     <Pie dataKey="value" data={entries} fill="#82ca9d">
-                        {entries.map((_entry, index) => (
-                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        {entries.map((entry, index) => (
+                            <Cell key={entry.name} fill={COLORS[index % COLORS.length]} />
                         ))}
                     </Pie>
                     <Tooltip content={PieChartTooltip} />
