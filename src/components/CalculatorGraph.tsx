@@ -55,7 +55,9 @@ const CustomPieChart = (props: CustomPieChartProps) => {
         if (active && payload && payload.length) {
             return (
                 <Card>
-                    <p className="label" style={{ margin: "10px" }}>{`${payload[0].name}: ${payload[0].value} ${unit} `}</p>
+                    <Typography className="label" style={{ margin: "10px" }}>
+                        {`${payload[0].name}: ${payload[0].value} ${unit} `}
+                    </Typography>
                 </Card>
             );
         }
