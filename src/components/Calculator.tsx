@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Button, Stack, CircularProgress } from '@mui/material';
+import { Button, Stack, CircularProgress} from '@mui/material';
 import CalculatorInput, { CalculationDetails } from './CalculatorInput';
 import CalculatorGraph, { generateChartData } from './CalculatorGraph';
 import CalculatorItems from './CalculatorItems';
@@ -42,6 +42,8 @@ const Calculator = () => {
 
         setItems(newItems)
     }
+
+
 
     const [open, setOpen] = useState(false)
 
@@ -95,9 +97,12 @@ const Calculator = () => {
                     width: '100%',
                     boxShadow: overflowActive ? 'inset 0px 20px 5px -20px #888, inset 0px -20px 5px -20px #888' : undefined,
                     borderRadius: '5px',
-                }}>
-                <CalculatorItems items={items} onDelete={handleDelete} onUpdate={handleUpdate} />
-            </Stack>
+                }}> 
+                    
+                    <CalculatorItems items={items} onDelete={handleDelete} onUpdate={handleUpdate} />
+                </Stack>
+
+                <CalculatorGraph items={items} />
             {(items.length > 0) && <Button
                 variant="contained"
                 size="large"
@@ -109,7 +114,7 @@ const Calculator = () => {
             >
                 Send Me The Results
             </Button>}
-            <CalculatorGraph items={items} />
+            
         </Stack>
     );
 }
