@@ -18,10 +18,10 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          PUBLIC_URL: ${{ env.PUBLIC_URL }}
-          REACT_APP_AIRTABLE_API_KEY: ${{ env.REACT_APP_AIRTABLE_API_KEY }}
-          REACT_APP_AIRTABLE_BASE_ID: ${{ env.REACT_APP_AIRTABLE_BASE_ID }}
-          REACT_APP_AIRTABLE_TABLE_ID: ${{ env.REACT_APP_AIRTABLE_TABLE_ID }}
+          PUBLIC_URL: ${{ vars.PUBLIC_URL }}
+          REACT_APP_AIRTABLE_API_KEY: ${{ vars.REACT_APP_AIRTABLE_API_KEY }}
+          REACT_APP_AIRTABLE_BASE_ID: ${{ vars.REACT_APP_AIRTABLE_BASE_ID }}
+          REACT_APP_AIRTABLE_TABLE_ID: ${{ vars.REACT_APP_AIRTABLE_TABLE_ID }}
       - name: Deploy
         uses: crazy-max/ghaction-github-pages@v1
         with:
