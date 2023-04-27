@@ -17,15 +17,11 @@ jobs:
           node-version: "18.x"
       - run: npm ci
       - run: npm run build
-        env:
-          PUBLIC_URL: /lagoon
-          REACT_APP_AIRTABLE_API_KEY: patyXsEzhRxkKJXEp.081c7e2556b68be7e2bf80ec56a506918ef358f42d08c22d6c07070f94ba5bc0
-          REACT_APP_AIRTABLE_BASE_ID: appCNLVh9A9JuK085
-          REACT_APP_AIRTABLE_TABLE_ID: tblf8y8F7F3cjBkJQ
-      - name: Deploy
-        uses: crazy-max/ghaction-github-pages@v1
+      - name: Build and deploy to GitHub Pages
+        uses: EdricChan03/action-build-deploy-ghpages@v3.1.0
+
         with:
           target_branch: gh-pages
           build_dir: build
         env:
-          GITHUB_TOKEN: ${{ secrets.SECRET_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAGES_GITHUB_TOKEN }}
