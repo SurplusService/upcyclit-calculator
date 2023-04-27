@@ -62,3 +62,22 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
+## Deployment
+
+Using GitHub Actions and GitHub Pages we are able to deploy this app at no cost.
+
+### Setup
+
+1. Navigate to the [fine-grained access token](https://github.com/settings/personal-access-tokens/new) creation page.
+2. Enter an arbitrary name for the token.
+3. Select SurplusService as the **Resource Owner**.
+4. Check **Only select repositories** and select the "upcyclit-calculator" from the dropdown.
+5. Click on **Repository permissions** and make sure "Contents" is "Rean and write".
+6. Click generate token at the bottom of the page and copy the token.
+7. Go to the [Actions secrets and variables](https://github.com/SurplusService/upcyclit-calculator/settings/secrets/actions) page.
+8. Click on "New repository secret"
+9. Set the name to "PAGES_GITHUB_TOKEN" and page the access token from step 6.
+
+### Refreshing Your Token
+
+Loosely follow the setup steps but rather than creating a new secret, edit and replace the value of the previous "PAGES_GITHUB_TOKEN" with the new one you just generated.
