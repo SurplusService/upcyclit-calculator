@@ -1,13 +1,29 @@
-# Lagoon
+# UpcyclIT Calculator
+
+###  [Live Preview](https://www.surplusservice.com/upcyclit-calculator)
+
 ## Getting Started
 
 ### Setup
+
+Ensure [Node 18](https://nodejs.org/en) is installed.
+
 Install project dependecies. Installs project dependencies to `/node_modules`
 ```
 npm install
 ```
 
 ### Run
+
+Before starting the program, you'll need to setup some environment variables.
+These can be found after created an AirTable account.
+
+```
+export REACT_APP_AIRTABLE_API_KEY=...
+export REACT_APP_AIRTABLE_BASE_ID=...
+export REACT_APP_AIRTABLE_TABLE_ID=...
+```
+
 Run the application in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser. The app will reload on its own when there have been changes made to the source code.
 ```
 npm start
