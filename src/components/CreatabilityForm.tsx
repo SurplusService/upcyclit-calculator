@@ -9,7 +9,7 @@ const CreatabilityForm = (props: FormProps) => {
       width: '100%'
     }}>
         <iframe
-            src={`https://link.creatability.com/widget/form/4AOtxQcaT0o6Enkzgi3Z?calculator_results=${encodeURIComponent(props.lineItems)}`}
+            src={`https://link.ma360.net/widget/form/4AOtxQcaT0o6Enkzgi3Z?calculator_results=${encodeURIComponent(props.lineItems)}`}
             style={{
                 'width': '100%',
                 'height': '100%',
