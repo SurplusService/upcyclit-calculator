@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/upcyclit-calculator/static/css/main.23d3114d.css",
+    "main.js": "/upcyclit-calculator/static/js/main.8f13dc79.js",
+    "static/js/787.5a567731.chunk.js": "/upcyclit-calculator/static/js/787.5a567731.chunk.js",
+    "index.html": "/upcyclit-calculator/index.html",
+    "main.23d3114d.css.map": "/upcyclit-calculator/static/css/main.23d3114d.css.map",
+    "main.8f13dc79.js.map": "/upcyclit-calculator/static/js/main.8f13dc79.js.map",
+    "787.5a567731.chunk.js.map": "/upcyclit-calculator/static/js/787.5a567731.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.23d3114d.css",
+    "static/js/main.8f13dc79.js"
+  ]
+}
